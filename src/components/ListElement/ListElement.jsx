@@ -1,11 +1,13 @@
 // importo useState
 import { useState } from 'react'
+import deleteBtn from '../../media/delete-btn.png'
+import editBtn from '../../media/edit-btn.png'
 
 // creo un componente vacio
-const ListElement = ({tarea, id, index, listaTareas, setListaTareas}) => {
+const ListElement = ({ tarea, id, index, listaTareas, setListaTareas }) => {
     // creo un estado de checked
-    const [checked, setChecked] = useState(false)    
-    
+    const [checked, setChecked] = useState(false)
+
     // creo la funcion eliminarElemento que buscara el elemento por su id dentro del localStorage y lo eliminara
     const eliminarElemento = (e) => {
         e.preventDefault();
@@ -23,12 +25,20 @@ const ListElement = ({tarea, id, index, listaTareas, setListaTareas}) => {
     }
 
     return (
-        <div className="flex w-full">
-            {/* muestro la id y luego la tarea */}    
+        <div className="flex w-[100%] my-1 text-left">
+            {/* muestro la id y luego la tarea */}
             {/* creo un input de form para aplicar el checked cuando quieras marcar que la tarea esta completada     */}
             <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} className="mr-4" />
-            <p className={`inline mr-4 text-xl ${checked ? 'line-through' : ''}`}><strong>{index + 1}</strong> - {tarea}</p>
-            <button className="ml-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2.5 py-1 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-1" onClick={(e) => eliminarElemento(e)}><strong>X</strong></button>
+            <p className={` mr-4 text-xl w-[85%] ${checked ? 'line-through' : ''}`}><strong>{index + 1}</strong> - {tarea}</p>
+
+
+            <button className="w-[2.5%] ml-auto text-white font-medium rounded-lg text-sm mr-2" onClick={(e) => eliminarElemento(e)}>
+                <img src={deleteBtn} alt="deleteBtn" className=' object-cover' />
+            </button>
+            <button className="w-[2.5%] text-white font-medium rounded-lg text-sm" onClick={(e) => eliminarElemento(e)}>
+                <img src={editBtn} alt="editBtn" className=' object-cover' />
+            </button>
+
         </div>
     )
 }

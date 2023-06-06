@@ -4,7 +4,7 @@ import ListElement from '../ListElement/ListElement'
 import { useState, useEffect } from 'react'
 
 // creo un componente vacio
-const List = ({activo, setActivo, tareas, setTareas}) => {
+const List = ({ activo, setActivo, tareas, setTareas }) => {
     let claseBtnRojo = "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
     let claseBtnAzul = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-1"
 
@@ -68,9 +68,24 @@ const List = ({activo, setActivo, tareas, setTareas}) => {
                 <button onClick={(e) => cancelarForm(e)} className={claseBtnRojo}>Cancelar</button>
             </form>
             {/* reviso la longitud del localStorage y si es mayor a 0, muestro el array donde en listElement mapeo el array */}
-            <div className='flex flex-col items-start inline-flex mx-auto border rounded p-4 bg-gray-100 mt-4 rounded-lg shadow-lg'>
-                {localStorage.length > 0 ? JSON.parse(localStorage.getItem('tareas')).map((tarea, index) => <ListElement tarea={tarea.tarea} index={index} id={tarea.id} key={index} listaTareas={tareas} setListaTareas={setTareas} />) : null}
-            </div>
+            {tareas.length > 0 && (
+                <div className='flex flex-col items-start inline-flex  border rounded p-4 bg-gray-100 mt-4 rounded-lg shadow-lg w-[80%]'>
+                    {JSON.parse(localStorage.getItem('tareas')).map((tarea, index) => (
+                        <div key={index}>
+                            <ListElement
+                                tarea={tarea.tarea}
+                                index={index}
+                                id={tarea.id}
+                                listaTareas={tareas}
+                                setListaTareas={setTareas}
+                            />
+                            {index !== JSON.parse(localStorage.getItem('tareas')).length - 1 && (
+                                <div className="border-b w-full mt-2"></div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     )
 }
