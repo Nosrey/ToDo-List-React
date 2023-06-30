@@ -25,19 +25,23 @@ const ListElement = ({ tarea, id, index, listaTareas, setListaTareas }) => {
     }
 
     return (
-        <div className="flex w-[100%] my-1 text-left">
+        <div className="flex my-1 text-center">
             {/* muestro la id y luego la tarea */}
             {/* creo un input de form para aplicar el checked cuando quieras marcar que la tarea esta completada     */}
-            <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} className="mr-4" />
-            <p className={` mr-4 text-xl w-[85%] ${checked ? 'line-through' : ''}`}><strong>{index + 1}</strong> - {tarea}</p>
+            <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} className="w-[7.5%]" />
+            <div className='w-[82.5%] text-base mx-3 flex justify-center items-center'>
+                <p className={`w-full ${checked ? 'line-through' : ''}`}><strong>{index + 1}</strong> - {tarea}</p>
+            </div>
 
+            <div className='w-[10%]'>
 
-            <button className="w-[2.5%] ml-auto text-white font-medium rounded-lg text-sm mr-2" onClick={(e) => eliminarElemento(e)}>
-                <img src={deleteBtn} alt="deleteBtn" className=' object-cover' />
-            </button>
-            <button className="w-[2.5%] text-white font-medium rounded-lg text-sm" onClick={(e) => eliminarElemento(e)}>
-                <img src={editBtn} alt="editBtn" className=' object-cover' />
-            </button>
+                <button className="w-[2vw] ml-auto text-white font-medium rounded-lg text-sm mr-2" onClick={(e) => eliminarElemento(e)}>
+                    <img src={deleteBtn} alt="deleteBtn" className=' object-cover' />
+                </button>
+                <button className="w-[2vw] text-white font-medium rounded-lg text-sm" onClick={(e) => eliminarElemento(e)}>
+                    <img src={editBtn} alt="editBtn" className=' object-cover' />
+                </button>
+            </div>
 
         </div>
     )

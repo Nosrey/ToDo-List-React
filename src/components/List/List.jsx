@@ -52,7 +52,7 @@ const List = ({ activo, setActivo, tareas, setTareas }) => {
     }, [setTareas])
 
     return (
-        <div className='my-2'>
+        <div className='h-screen bg-black w-[25%]'>
             <button className={claseBtnRojo + ' ml-1'} onClick={eliminarTodasLasTareas}>Eliminar todas las tareas</button>
             {/* si el estado es true, muestro el formulario */}
             <form>
@@ -69,9 +69,9 @@ const List = ({ activo, setActivo, tareas, setTareas }) => {
             </form>
             {/* reviso la longitud del localStorage y si es mayor a 0, muestro el array donde en listElement mapeo el array */}
             {tareas.length > 0 && (
-                <div className='flex flex-col items-start inline-flex  border rounded p-4 bg-gray-100 mt-4 rounded-lg shadow-lg w-[80%]'>
+                <div className='flex flex-col items-start inline-flex  border rounded p-2 bg-gray-100 mt-4 rounded-lg shadow-lg w-[90%]'>
                     {JSON.parse(localStorage.getItem('tareas')).map((tarea, index) => (
-                        <div key={index}>
+                        <div key={index} className='w-full'>
                             <ListElement
                                 tarea={tarea.tarea}
                                 index={index}
