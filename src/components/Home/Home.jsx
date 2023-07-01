@@ -17,7 +17,9 @@ const Home = () => {
         <div>
             {activo ? <MensajeConfirmar activo={activo} setActivo={setActivo} tareas={tareas} setTareas={setTareas} /> : null}
             <CortinaBlanca activo={activo} setActivo={setActivo} />
-            <List activo={activo} setActivo={setActivo} tareas={tareas} setTareas={setTareas}/>
+            <div className='flex flex-row'>
+                <List activo={activo} setActivo={setActivo} tareas={tareas} setTareas={setTareas} />
+            </div>
         </div>
     )
 }

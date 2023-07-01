@@ -5,18 +5,17 @@ import { useState, useEffect } from 'react'
 
 // creo un componente vacio
 const List = ({ activo, setActivo, tareas, setTareas }) => {
-    let claseBtnRojo = "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-    let claseBtnAzul = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-1"
-
     // creo un estado para la tarea
     const [tarea, setTarea] = useState('')
+    // creo un estado con un booleando llamado advertir
+    const [advertir, setAdvertir] = useState(false)
 
-    let cancelarForm = (e) => {
-        e.preventDefault();
-        // cambio el estado
-        // si cancelo el formulario, borro el valor del input
-        setTarea('')
-    }
+    // let cancelarForm = (e) => {
+    //     e.preventDefault();
+    //     // cambio el estado
+    //     // si cancelo el formulario, borro el valor del input
+    //     setTarea('')
+    // }
 
     // creo una funcion para agregar tareas al array tareas
     let agregarTarea = (e) => {
@@ -35,7 +34,10 @@ const List = ({ activo, setActivo, tareas, setTareas }) => {
             // vacio el formulario
             setTarea('')
         } else {
-            alert('No se puede agregar una tarea vacia')
+            setAdvertir(true)
+            setTimeout(() => {
+                setAdvertir(false)
+            }, 2000)
         }
     }
 
@@ -52,38 +54,43 @@ const List = ({ activo, setActivo, tareas, setTareas }) => {
     }, [setTareas])
 
     return (
-        <div className='h-screen bg-black w-[25%]'>
-            <button className={claseBtnRojo + ' ml-1'} onClick={eliminarTodasLasTareas}>Eliminar todas las tareas</button>
+        <div className='h-screen bg-black w-[30%] pt-4'>
             {/* si el estado es true, muestro el formulario */}
-            <form>
+            <div className=''>
                 {/* creo un input responsivo con el estado tarea */}
-                <input type="text" value={tarea} onChange={(e) => setTarea(e.target.value)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 w-1/4 mx-auto mb-2" />
+                <input type="text" value={tarea} onChange={(e) => setTarea(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 w-[80%] mx-auto mb-4   " + (advertir && "border-red-600 border-4 animate-bounce  ")} />
+                <div className='flex flex-col justify-center items-center'>
 
-                <button onClick={(e) => {
-                    e.preventDefault();
-                    agregarTarea(e)
-                }}
-                    className={claseBtnAzul}>Crear</button>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        agregarTarea(e)
+                    }}
+                        className={"text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-[25%]"}>Crear</button>
 
-                <button onClick={(e) => cancelarForm(e)} className={claseBtnRojo}>Cancelar</button>
-            </form>
+                    {/* boton para cancelar descartado */}
+                    {/* <button onClick={(e) => cancelarForm(e)} className={"focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 w-[40%]"}>Cancelar</button> */}
+                </div>
+            </div>
             {/* reviso la longitud del localStorage y si es mayor a 0, muestro el array donde en listElement mapeo el array */}
             {tareas.length > 0 && (
-                <div className='flex flex-col items-start inline-flex  border rounded p-2 bg-gray-100 mt-4 rounded-lg shadow-lg w-[90%]'>
-                    {JSON.parse(localStorage.getItem('tareas')).map((tarea, index) => (
-                        <div key={index} className='w-full'>
-                            <ListElement
-                                tarea={tarea.tarea}
-                                index={index}
-                                id={tarea.id}
-                                listaTareas={tareas}
-                                setListaTareas={setTareas}
-                            />
-                            {index !== JSON.parse(localStorage.getItem('tareas')).length - 1 && (
-                                <div className="border-b w-full mt-2"></div>
-                            )}
-                        </div>
-                    ))}
+                <div>
+                    <div className='flex flex-col items-start inline-flex border rounded px-2 bg-gray-100 mt-8 rounded-lg shadow-lg w-[90%]'>
+                        {JSON.parse(localStorage.getItem('tareas')).map((tarea, index) => (
+                            <div key={index} className='w-full'>
+                                <ListElement
+                                    tarea={tarea.tarea}
+                                    index={index}
+                                    id={tarea.id}
+                                    listaTareas={tareas}
+                                    setListaTareas={setTareas}
+                                />
+                                {index !== JSON.parse(localStorage.getItem('tareas')).length - 1 && (
+                                    <div className="border-b w-full mt-2"></div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    <button className={'focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 mt-4'} onClick={eliminarTodasLasTareas}>Eliminar todas las tareas</button>
                 </div>
             )}
         </div>
