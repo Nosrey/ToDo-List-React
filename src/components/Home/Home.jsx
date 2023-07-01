@@ -3,7 +3,11 @@ import List from '../List/List'
 import CortinaBlanca from '../CortinaBlanca/CortinaBlanca'
 // importo MensajeConfirmar
 import MensajeConfirmar from '../MensajeConfirmar/MensajeConfirmar'
+// importo Calendar
+import Calendar from '../Calendar/Calendar'
+// importo useState
 import { useState } from 'react'
+
 
 // creo un componente vacio
 const Home = () => {
@@ -17,8 +21,10 @@ const Home = () => {
         <div>
             {activo ? <MensajeConfirmar activo={activo} setActivo={setActivo} tareas={tareas} setTareas={setTareas} /> : null}
             <CortinaBlanca activo={activo} setActivo={setActivo} />
+            {/* coloco aca el contenido de la pagina en flex horizontal */}
             <div className='flex flex-row'>
                 <List activo={activo} setActivo={setActivo} tareas={tareas} setTareas={setTareas} />
+                <Calendar />
             </div>
         </div>
     )
