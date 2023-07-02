@@ -4,7 +4,7 @@ import ListElement from '../ListElement/ListElement'
 import { useState, useEffect } from 'react'
 
 // creo un componente vacio
-const List = ({ activo, setActivo, tareas, setTareas }) => {
+const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido, eventos, setEventos }) => {
     // creo un estado para la tarea
     const [tarea, setTarea] = useState('')
     // creo un estado con un booleando llamado advertir
@@ -20,10 +20,11 @@ const List = ({ activo, setActivo, tareas, setTareas }) => {
     // creo una funcion para agregar tareas al array tareas
     let agregarTarea = (e) => {
         e.preventDefault();
-        if (tarea.length > 0) {
+        if (tarea.length > 0 && diaElegido !== null) {
             // creo un objeto con la tarea y el id
             let tareaObjeto = {
-                tarea: tarea,
+                title: tarea,
+                date: diaElegido,
                 id: Date.now()
             }
             // agrego el objeto al array tareas
@@ -58,9 +59,9 @@ const List = ({ activo, setActivo, tareas, setTareas }) => {
             {/* si el estado es true, muestro el formulario */}
             <div className=''>
                 {/* creo un input responsivo con el estado tarea */}
-                <input type="text" value={tarea} onChange={(e) => setTarea(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 w-[80%] mx-auto mb-4   " + (advertir && "border-red-600 border-4 animate-bounce  ")} />
+                <input type="text" value={tarea} onChange={(e) => setTarea(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 w-[80%] mx-auto mb-4   " + (advertir && "border-red-600 border-4 animate-bounce  ")} />
                 <div className='flex flex-col justify-center items-center'>
-
+                    <strong className='text-white mb-4'>{diaElegido}</strong>
                     <button onClick={(e) => {
                         e.preventDefault();
                         agregarTarea(e)
@@ -72,13 +73,13 @@ const List = ({ activo, setActivo, tareas, setTareas }) => {
                 </div>
             </div>
             {/* reviso la longitud del localStorage y si es mayor a 0, muestro el array donde en listElement mapeo el array */}
-            {tareas.length > 0 && (
+            {tareas.filter(evento => evento.date === diaElegido).length > 0 && (
                 <div>
                     <div className='flex flex-col items-start inline-flex border rounded px-2 bg-gray-100 mt-8 rounded-lg shadow-lg w-[90%]'>
-                        {JSON.parse(localStorage.getItem('tareas')).map((tarea, index) => (
+                        {JSON.parse(localStorage.getItem('tareas')).filter(evento => evento.date === diaElegido).sort((a,b) => a.title - b.title).map((tarea, index) => (
                             <div key={index} className='w-full'>
                                 <ListElement
-                                    tarea={tarea.tarea}
+                                    tarea={tarea.title}
                                     index={index}
                                     id={tarea.id}
                                     listaTareas={tareas}

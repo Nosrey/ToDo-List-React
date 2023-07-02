@@ -21,9 +21,25 @@ const ListElement = ({ tarea, id, index, listaTareas, setListaTareas }) => {
         setListaTareas(tareasFiltradas)
         console.log('la id es: ', id)
         console.log('listo: ', tareasFiltradas)
-
     }
 
+    // creo la funcion editarElemento para editar el elemento
+    const editarElemento = (e) => {
+        e.preventDefault();
+        // creo una variable que almacene el array de tareas del localStorage
+        let tareas = JSON.parse(localStorage.getItem('tareas'))
+        // ubico la tarea con la misma id y reemplazo el titulo con prompt
+        tareas.map(tarea => {
+            if (tarea.id === id) {
+                tarea.title = prompt('Ingrese el nuevo titulo de la tarea')
+                return 1 
+            } else return 0
+        })
+        // guardo el array en el localStorage
+        localStorage.setItem('tareas', JSON.stringify(tareas))
+        // lo aplico al estado de listaTareas
+        setListaTareas(tareas)
+    }
     return (
         <div className="flex my-1 text-center py-1">
             {/* muestro la id y luego la tarea */}
@@ -34,7 +50,7 @@ const ListElement = ({ tarea, id, index, listaTareas, setListaTareas }) => {
             </div>
 
             <div className='w-[20%] flex justify-center items-center'>
-                <button className="w-[2vw] text-white font-medium rounded-lg text-sm" onClick={(e) => eliminarElemento(e)}>
+                <button className="w-[2vw] text-white font-medium rounded-lg text-sm" onClick={(e) => editarElemento(e)}>
                     <img src={editBtn} alt="editBtn" className=' object-cover' />
                 </button>
 

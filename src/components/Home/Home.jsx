@@ -13,8 +13,9 @@ import { useState } from 'react'
 const Home = () => {
     // creo un estado para la cortina
     const [activo, setActivo] = useState(false)
-
     const [tareas, setTareas] = useState([])
+    const [diaElegido, setDiaElegido] = useState(null);
+    const [eventos, setEventos] = useState([]);
 
 
     return (
@@ -23,8 +24,8 @@ const Home = () => {
             <CortinaBlanca activo={activo} setActivo={setActivo} />
             {/* coloco aca el contenido de la pagina en flex horizontal */}
             <div className='flex flex-row'>
-                <List activo={activo} setActivo={setActivo} tareas={tareas} setTareas={setTareas} />
-                <Calendar />
+                <List activo={activo} setActivo={setActivo} tareas={tareas} setTareas={setTareas} diaElegido={diaElegido} setDiaElegido={setDiaElegido} eventos={eventos} setEventos={setEventos} />
+                <Calendar diaElegido={diaElegido} setDiaElegido={setDiaElegido} eventos={tareas} setEventos={setTareas} />
             </div>
         </div>
     )
