@@ -4,18 +4,11 @@ import ListElement from '../ListElement/ListElement'
 import { useState, useEffect } from 'react'
 
 // creo un componente vacio
-const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido, eventos, setEventos }) => {
+const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido, eventos, setEventos, fecha, setFecha }) => {
     // creo un estado para la tarea
     const [tarea, setTarea] = useState('')
     // creo un estado con un booleando llamado advertir
     const [advertir, setAdvertir] = useState(false)
-
-    // let cancelarForm = (e) => {
-    //     e.preventDefault();
-    //     // cambio el estado
-    //     // si cancelo el formulario, borro el valor del input
-    //     setTarea('')
-    // }
 
     // creo una funcion para agregar tareas al array tareas
     let agregarTarea = (e) => {
@@ -59,6 +52,7 @@ const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido,
             {/* si el estado es true, muestro el formulario */}
             <div className=''>
                 {/* creo un input responsivo con el estado tarea */}
+                <h2 className='text-white mb-2'>Escribe la tarea</h2>
                 <input type="text" value={tarea} onChange={(e) => setTarea(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 w-[80%] mx-auto mb-4   " + (advertir && "border-red-600 border-4 animate-bounce  ")} />
                 <div className='flex flex-col justify-center items-center'>
                     <strong className='text-white mb-4'>{diaElegido}</strong>
@@ -76,7 +70,7 @@ const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido,
             {tareas.filter(evento => evento.date === diaElegido).length > 0 && (
                 <div>
                     <div className='flex flex-col items-start inline-flex border rounded px-2 bg-gray-100 mt-8 rounded-lg shadow-lg w-[90%]'>
-                        {JSON.parse(localStorage.getItem('tareas')).filter(evento => evento.date === diaElegido).sort((a,b) => a.title - b.title).map((tarea, index) => (
+                        {JSON.parse(localStorage.getItem('tareas')).filter(evento => evento.date === diaElegido).sort((a,b) => a.title - b.title).sort((a, b) => a.title.localeCompare(b.title)).map((tarea, index) => (
                             <div key={index} className='w-full'>
                                 <ListElement
                                     tarea={tarea.title}

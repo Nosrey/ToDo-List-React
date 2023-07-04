@@ -3,7 +3,7 @@ import dayGridPlungin from '@fullcalendar/daygrid';
 import timeGridPluning from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-function Calendar({ diaElegido, setDiaElegido, eventos, setEventos }) {
+function Calendar({ diaElegido, setDiaElegido, tareas, setTareas }) {
     // [
     //     { title: 'event 1', date: '2023-07-07' },
     //     { title: 'event 2', date: '2023-07-08' }
@@ -11,6 +11,7 @@ function Calendar({ diaElegido, setDiaElegido, eventos, setEventos }) {
 
     const elegirDia = function (data) {
         setDiaElegido(data.startStr);
+        console.log('soy data: ', data)
     }
 
 
@@ -27,7 +28,18 @@ function Calendar({ diaElegido, setDiaElegido, eventos, setEventos }) {
             height={"95%"}
             weekends={true}
             eventOrdering={false}
-            events={eventos}
+            events={
+                [
+                    {
+                        title: 'Evento programado',
+                        start: "2023-07-07T04:00:00.000Z",
+                        end: "2023-07-07T05:00:00.000Z",
+                        allDay: false
+                      },
+                    { title: 'event 2', date: '2023-07-08' }
+
+                ]
+            }
             selectable={true}
             selectHelper={true}
             select={elegirDia}
