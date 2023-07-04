@@ -4,16 +4,18 @@ import timeGridPluning from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
 function Calendar({ diaElegido, setDiaElegido, tareas, setTareas }) {
-    // [
-    //     { title: 'event 1', date: '2023-07-07' },
-    //     { title: 'event 2', date: '2023-07-08' }
-    // ]
 
     const elegirDia = function (data) {
         setDiaElegido(data.startStr);
-        console.log('soy data: ', data)
     }
 
+    const elegirEvento = function (data) {
+        // del objeto data, saco la fecha del evento que tendra este formato "2023-07-04T16:04:00.000Z" y la convierto en este formato "2023-07-04" y la guardo en setDiaElegido
+        setDiaElegido(data.event.startStr.split('T')[0]);
+    }
+
+    // formato para los eventos
+    // { title: 'event 2', date: '2023-07-08', allDay: false, color: 'red', start: new Date('2023-07-08T12:30:00') },
 
     return <div className='w-[100%] mx-2'>
         Calendar
@@ -28,6 +30,7 @@ function Calendar({ diaElegido, setDiaElegido, tareas, setTareas }) {
             height={"95%"}
             weekends={true}
             eventOrdering={false}
+            eventClick={elegirEvento}
             events={tareas}
             selectable={true}
             selectHelper={true}

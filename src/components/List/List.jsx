@@ -1,5 +1,6 @@
 // import ListElement
 import ListElement from '../ListElement/ListElement'
+import bgBanner from '../../media/bg-banner.jpg'
 // traigo el useState
 import { useState, useEffect } from 'react'
 
@@ -18,8 +19,14 @@ const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido,
             let tareaObjeto = {
                 title: tarea,
                 date: diaElegido,
-                id: Date.now()
+                id: Date.now(),
             }
+
+            if  (fecha !== '') {
+                tareaObjeto.allDay = false;
+                tareaObjeto.start = new Date(diaElegido + 'T' + fecha + ':00')
+            }
+
             // agrego el objeto al array tareas
             setTareas([...tareas, tareaObjeto])
             // guardo el array en el localStorage
@@ -27,6 +34,7 @@ const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido,
             // cambio el estado
             // vacio el formulario
             setTarea('')
+            setFecha('')
         } else {
             setAdvertir(true)
             setTimeout(() => {
@@ -48,12 +56,18 @@ const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido,
     }, [setTareas])
 
     return (
-        <div className='h-screen bg-black w-[30%] pt-4'>
+        <div className='h-screen bg-black w-[30%] pt-4 bg-cover' style={{ backgroundImage: `url(${bgBanner})` }}>
             {/* si el estado es true, muestro el formulario */}
             <div className=''>
                 {/* creo un input responsivo con el estado tarea */}
-                <h2 className='text-white mb-2'>Escribe la tarea</h2>
+                <h2 className='text-white mb-2 font-bold'>Escribe la tarea</h2>
                 <input type="text" value={tarea} onChange={(e) => setTarea(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 w-[80%] mx-auto mb-4   " + (advertir && "border-red-600 border-4 animate-bounce  ")} />
+
+                {/* creo un input para elegir la hora del dia para la tarea*/}
+                <strong className='text-white mt-4 '>Escribe la hora</strong>
+                <h3 className='text-gray-300 text-xs mb-2'>( Ejemplo: 04:52 a.m )</h3>
+                <input type="time" value={fecha} onChange={(e) => setFecha(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 w-[45%] mx-auto mb-4"} />
+
                 <div className='flex flex-col justify-center items-center'>
                     <strong className='text-white mb-4'>{diaElegido}</strong>
                     <button onClick={(e) => {
