@@ -28,18 +28,7 @@ function Calendar({ diaElegido, setDiaElegido, tareas, setTareas }) {
             height={"95%"}
             weekends={true}
             eventOrdering={false}
-            events={
-                [
-                    {
-                        title: 'Evento programado',
-                        start: "2023-07-07T04:00:00.000Z",
-                        end: "2023-07-07T05:00:00.000Z",
-                        allDay: false
-                      },
-                    { title: 'event 2', date: '2023-07-08' }
-
-                ]
-            }
+            events={tareas}
             selectable={true}
             selectHelper={true}
             select={elegirDia}
