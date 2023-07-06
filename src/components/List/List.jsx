@@ -18,6 +18,7 @@ const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido,
             // creo un objeto con la tarea y el id
             let tareaObjeto = {
                 title: tarea,
+                color: 'blue',
                 date: diaElegido,
                 id: Date.now(),
             }
@@ -91,6 +92,7 @@ const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido,
                                     index={index}
                                     id={tarea.id}
                                     listaTareas={tareas}
+                                    color={tarea.color}
                                     setListaTareas={setTareas}
                                 />
                                 {index !== JSON.parse(localStorage.getItem('tareas')).length - 1 && (

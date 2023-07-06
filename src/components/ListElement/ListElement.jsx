@@ -4,9 +4,23 @@ import deleteBtn from '../../media/delete-btn.png'
 import editBtn from '../../media/edit-btn.png'
 
 // creo un componente vacio
-const ListElement = ({ tarea, id, index, listaTareas, setListaTareas }) => {
+const ListElement = ({ tarea, id, index, listaTareas, setListaTareas, color }) => {
     // creo un estado de checked
-    const [checked, setChecked] = useState(false)
+    const identificarColor = () => {
+        return color == 'red' ? true : false
+    }
+
+    const [checked, setChecked] = useState(identificarColor())
+
+    const cambiarChecked = (e) => {
+        e.preventDefault();
+        setChecked(!checked)
+        let copiaListaTareas = [...listaTareas]
+        copiaListaTareas[index].color = checked ? 'red' : 'blue'
+        console.log('soy el elemento: ', copiaListaTareas[index])
+        setListaTareas(copiaListaTareas)
+        localStorage.setItem('tareas', JSON.stringify(copiaListaTareas))
+    }
 
     // creo la funcion eliminarElemento que buscara el elemento por su id dentro del localStorage y lo eliminara
     const eliminarElemento = (e) => {
@@ -44,7 +58,7 @@ const ListElement = ({ tarea, id, index, listaTareas, setListaTareas }) => {
         <div className="flex my-1 text-center py-1">
             {/* muestro la id y luego la tarea */}
             {/* creo un input de form para aplicar el checked cuando quieras marcar que la tarea esta completada     */}
-            <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} className="w-[7.5%]" />
+            <input type="checkbox" checked={checked} onChange={(e) => cambiarChecked(e)} className="w-[7.5%]" />
             <div className='w-[72.5%] text-base mx-3 flex justify-center items-center'>
                 <p className={`w-full ${checked ? 'line-through' : ''}`}>{tarea}</p>
             </div>
