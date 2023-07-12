@@ -3,9 +3,11 @@ import ListElement from '../ListElement/ListElement'
 import bgBanner from '../../media/bg-banner.jpg'
 // traigo el useState
 import { useState, useEffect } from 'react'
+// importo List.css
+import './List.css'
 
 // creo un componente vacio
-const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido, eventos, setEventos, fecha, setFecha }) => {
+const List = ({ calendarRef, activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido, eventos, setEventos, fecha, setFecha, sacarButton }) => {
     // creo un estado para la tarea
     const [tarea, setTarea] = useState('')
     // creo un estado con un booleando llamado advertir
@@ -57,7 +59,7 @@ const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido,
     }, [setTareas])
 
     return (
-        <div className='h-screen bg-black w-[30%] pt-4 bg-cover' style={{ backgroundImage: `url(${bgBanner})` }}>
+        <div className={'h-screen bg-black w-[30%] pt-4 bg-cover sacar ' + (sacarButton ? 'sacar-activo' : 'sacar-desactivo')} style={{ backgroundImage: `url(${bgBanner})` }}>
             {/* si el estado es true, muestro el formulario */}
             <div className=''>
                 {/* creo un input responsivo con el estado tarea */}
@@ -85,9 +87,10 @@ const List = ({ activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido,
             {tareas.filter(evento => evento.date === diaElegido).length > 0 && (
                 <div>
                     <div className='flex flex-col items-start inline-flex border rounded px-2 bg-gray-100 mt-8 rounded-lg shadow-lg w-[90%]'>
-                        {JSON.parse(localStorage.getItem('tareas')).filter(evento => evento.date === diaElegido).sort((a,b) => a.title - b.title).sort((a, b) => a.title.localeCompare(b.title)).map((tarea, index) => (
+                        {tareas.filter(evento => evento.date === diaElegido).sort((a,b) => a.title - b.title).sort((a, b) => a.title.localeCompare(b.title)).map((tarea, index) => (
                             <div key={index} className='w-full'>
                                 <ListElement
+                                    calendarRef={calendarRef}
                                     tarea={tarea.title}
                                     index={index}
                                     id={tarea.id}

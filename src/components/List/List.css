@@ -1,0 +1,11 @@
+.sacar {
+    transition: transform 0.3s ease-out;
+}
+
+.sacar.sacar-activo  {
+    transform: translateX(-100%);
+}
+
+.sacar.sacar-desactivo  {
+    transform: translateX(0%);
+}

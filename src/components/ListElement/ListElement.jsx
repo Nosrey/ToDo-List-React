@@ -4,22 +4,40 @@ import deleteBtn from '../../media/delete-btn.png'
 import editBtn from '../../media/edit-btn.png'
 
 // creo un componente vacio
-const ListElement = ({ tarea, id, index, listaTareas, setListaTareas, color }) => {
-    // creo un estado de checked
-    const identificarColor = () => {
-        return color == 'red' ? true : false
+const ListElement = ({ tarea, id, index, listaTareas, setListaTareas, color, calendarRef }) => {
+    // eslint-disable-next-line
+    const obtenerColor = () => {
+        return color === 'blue' ? false : true
     }
 
-    const [checked, setChecked] = useState(identificarColor())
+    const [checked, setChecked] = useState(obtenerColor())
 
-    const cambiarChecked = (e) => {
-        e.preventDefault();
-        setChecked(!checked)
-        let copiaListaTareas = [...listaTareas]
-        copiaListaTareas[index].color = checked ? 'red' : 'blue'
-        console.log('soy el elemento: ', copiaListaTareas[index])
-        setListaTareas(copiaListaTareas)
-        localStorage.setItem('tareas', JSON.stringify(copiaListaTareas))
+    const cambiarChecked = () => {
+        var calendarApi = calendarRef?.current.getApi()
+        let nuevoColor = checked ? 'blue' : 'red'
+        if (calendarApi) {
+            setChecked(!checked)
+            // Obtener la referencia al evento que deseas actualizar
+            const evento = calendarApi.getEventById(id);
+            // Llamar al método setProp() para actualizar la propiedad "color"
+            evento.setProp('color', nuevoColor);
+            
+            // obtengo todos los eventos en una variable
+            let copiaTareas = [...listaTareas]
+            // busco el evento con la misma id y le cambio el color
+            // eslint-disable-next-line
+            copiaTareas.map(tarea => {
+                if (tarea.id === id) {
+                    tarea.color = nuevoColor
+                } 
+            })
+            // guardo el array en el localStorage
+            localStorage.setItem('tareas', JSON.stringify(copiaTareas))
+            // lo aplico al estado de listaTareas
+            setListaTareas(copiaTareas)
+        } else {
+            console.log('No se pudo actualizar el color del evento');
+        }
     }
 
     // creo la funcion eliminarElemento que buscara el elemento por su id dentro del localStorage y lo eliminara
