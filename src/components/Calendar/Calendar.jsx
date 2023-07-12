@@ -1,10 +1,10 @@
+import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlungin from '@fullcalendar/daygrid';
 import timeGridPluning from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-function Calendar({ diaElegido, setDiaElegido, tareas, setTareas }) {
-
+function Calendar({ diaElegido, setDiaElegido, tareas, setTareas, calendarRef }) {
     const elegirDia = function (data) {
         setDiaElegido(data.startStr);
     }
@@ -20,6 +20,7 @@ function Calendar({ diaElegido, setDiaElegido, tareas, setTareas }) {
     return <div className='w-[100%] mx-2'>
         Calendar
         <FullCalendar
+            ref={calendarRef}
             plugins={[dayGridPlungin, timeGridPluning, interactionPlugin]}
             initialView="dayGridMonth"
             headerToolbar={{
