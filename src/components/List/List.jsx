@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import './List.css'
 
 // creo un componente vacio
-const List = ({ calendarRef, activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido, eventos, setEventos, fecha, setFecha, sacarButton }) => {
+const List = ({ setSacarButton, setEscondido, escondido, calendarRef, activo, setActivo, tareas, setTareas, diaElegido, setDiaElegido, eventos, setEventos, fecha, setFecha, sacarButton }) => {
     // creo un estado para la tarea
     const [tarea, setTarea] = useState('')
     // creo un estado con un booleando llamado advertir
@@ -59,20 +59,20 @@ const List = ({ calendarRef, activo, setActivo, tareas, setTareas, diaElegido, s
     }, [setTareas])
 
     return (
-        <div className={'h-screen bg-black w-[30%] pt-4 bg-cover sacar ' + (sacarButton ? 'sacar-activo' : 'sacar-desactivo')} style={{ backgroundImage: `url(${bgBanner})` }}>
+        <div className={'bg-black w-[100%] lg:w-[30%] pt-4 bg-cover sacar h-full ' + (escondido ? ' hidden w-[0]' : '')} style={{ backgroundImage: `url(${bgBanner})` }}>
             {/* si el estado es true, muestro el formulario */}
             <div className=''>
                 {/* creo un input responsivo con el estado tarea */}
-                <h2 className='text-white mb-2 font-bold'>Escribe la tarea</h2>
-                <input type="text" value={tarea} onChange={(e) => setTarea(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 w-[80%] mx-auto mb-4   " + (advertir && "border-red-600 border-4 animate-bounce  ")} />
+                <h2 className='text-white mb-2 font-bold text-2xl xl:text-base'>Escribe la tarea</h2>
+                <input type="text" value={tarea} onChange={(e) => setTarea(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 w-[40%] lg:w-[80%] mx-auto mb-4   " + (advertir && "border-red-600 border-4 animate-bounce  ")} />
 
                 {/* creo un input para elegir la hora del dia para la tarea*/}
-                <strong className='text-white mt-4 '>Escribe la hora</strong>
-                <h3 className='text-gray-300 text-xs mb-2'>( Ejemplo: 04:52 a.m )</h3>
-                <input type="time" value={fecha} onChange={(e) => setFecha(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 w-[45%] mx-auto mb-4"} />
+                <strong className='text-white mt-4 text-2xl xl:text-base '>Escribe la hora</strong>
+                <h3 className='text-gray-300 text-base xl:text-xs mb-2'>( Ejemplo: 04:52 a.m )</h3>
+                <input type="time" value={fecha} onChange={(e) => setFecha(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 lg:w-[45%] w-[25%] mx-auto mb-4"} />
 
                 <div className='flex flex-col justify-center items-center'>
-                    <strong className='text-white mb-4'>{diaElegido}</strong>
+                    <strong className='text-white mb-4 xl:text-base text-2xl'>{diaElegido}</strong>
                     <button onClick={(e) => {
                         e.preventDefault();
                         agregarTarea(e)

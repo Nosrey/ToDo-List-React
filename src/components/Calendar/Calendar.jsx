@@ -44,14 +44,14 @@ function Calendar({ diaElegido, setDiaElegido, tareas, setTareas, calendarRef })
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             }}
-            height={"95%"}
+            height={"95vh"}        
             weekends={true}
             eventOrdering={false}
             eventClick={elegirEvento}
             events={tareas}
             selectable={true}
             selectHelper={true}
-            select={elegirDia}
+            select={elegirDia}            
         />
     </div>;
 }
