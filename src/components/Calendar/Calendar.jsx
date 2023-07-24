@@ -34,7 +34,7 @@ function Calendar({ diaElegido, setDiaElegido, tareas, setTareas, calendarRef })
     // formato para los eventos
     // { title: 'event 2', date: '2023-07-08', allDay: false, color: 'red', start: new Date('2023-07-08T12:30:00') },
 
-    return <div className='w-[100%] mx-2'>
+    return <div className='w-auto lg:w-screen mx-2 mt-2 lg:mt-0'>
         <FullCalendar
             ref={calendarRef}
             plugins={[dayGridPlungin, timeGridPluning, interactionPlugin]}

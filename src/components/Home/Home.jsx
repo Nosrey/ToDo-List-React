@@ -61,7 +61,7 @@ const Home = () => {
                 <img src={(escondido ? arrowBtnRight : arrowBtnLeft)} alt="arrow" className='w-full h-full' />
             </button>
 
-            <div className={'h-[100vh] flex lg:flex-row flex-col sacar2 ' + (sacarButton ? ' sacar-activo2' : ' sacar-desactivo2 ') + (escondido ? ' sacar-desactivo2 ' : '')} >
+            <div className={' h-[100vh] flex lg:flex-row flex-col sacar2 ' + (sacarButton ? ' sacar-activo2' : ' sacar-desactivo2 ') + (escondido ? ' sacar-desactivo2 ' : '')} >
                 <List setEscondido={setEscondido} escondido={escondido} setSacarButton={setSacarButton} sacarButton={sacarButton} calendarRef={calendarRef} activo={activo} setActivo={setActivo} tareas={tareas} setTareas={setTareas} diaElegido={diaElegido} setDiaElegido={setDiaElegido} eventos={eventos} setEventos={setEventos} fecha={fecha} setFecha={setFecha} />
                 <Calendar calendarRef={calendarRef} diaElegido={diaElegido} setDiaElegido={setDiaElegido} tareas={tareas} setTareas={setTareas} />
             </div>

@@ -59,25 +59,25 @@ const List = ({ setSacarButton, setEscondido, escondido, calendarRef, activo, se
     }, [setTareas])
 
     return (
-        <div className={'bg-black w-[100%] lg:w-[30%] pt-4 bg-cover sacar h-full ' + (escondido ? ' hidden w-[0]' : '')} style={{ backgroundImage: `url(${bgBanner})` }}>
+        <div className={'bg-black w-[100%] lg:w-[30%] pt-4 bg-cover sacar lg:h-full ' + (escondido ? ' hidden w-[0]' : '')} style={{ backgroundImage: `url(${bgBanner})` }}>
             {/* si el estado es true, muestro el formulario */}
             <div className=''>
                 {/* creo un input responsivo con el estado tarea */}
-                <h2 className='text-white mb-2 font-bold text-2xl xl:text-base'>Escribe la tarea</h2>
-                <input type="text" value={tarea} onChange={(e) => setTarea(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 w-[40%] lg:w-[80%] mx-auto mb-4   " + (advertir && "border-red-600 border-4 animate-bounce  ")} />
+                <h2 className='text-white mb-2 font-bold text-xl lg:text-base'>Escribe la tarea</h2>
+                <input type="text" value={tarea} onChange={(e) => setTarea(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 w-[60%] lg:w-[85%] mx-auto lg:mb-4 mb-2  " + (advertir && "border-red-600 border-4 animate-bounce  ")} />
 
                 {/* creo un input para elegir la hora del dia para la tarea*/}
-                <strong className='text-white mt-4 text-2xl xl:text-base '>Escribe la hora</strong>
-                <h3 className='text-gray-300 text-base xl:text-xs mb-2'>( Ejemplo: 04:52 a.m )</h3>
-                <input type="time" value={fecha} onChange={(e) => setFecha(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 lg:w-[45%] w-[25%] mx-auto mb-4"} />
+                <strong className='text-white mt-4 text-xl lg:text-base '>Escribe la hora</strong>
+                <h3 className='text-gray-300 text-base lg:text-xs mb-2'>( Ejemplo: 04:52 a.m )</h3>
+                <input type="time" value={fecha} onChange={(e) => setFecha(e.target.value)} class={"bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 lg:w-[60%] w-[35%] mx-auto lg:mb-4 mb-2"} />
 
                 <div className='flex flex-col justify-center items-center'>
-                    <strong className='text-white mb-4 xl:text-base text-2xl'>{diaElegido}</strong>
+                    <strong className='text-white lg:mb-4 mb-2 lg:text-base text-2xl'>{diaElegido}</strong>
                     <button onClick={(e) => {
                         e.preventDefault();
                         agregarTarea(e)
                     }}
-                        className={"text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-[25%]"}>Crear</button>
+                        className={"text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-[25%] lg:w-[40%] mb-4"}>Crear</button>
 
                     {/* boton para cancelar descartado */}
                     {/* <button onClick={(e) => cancelarForm(e)} className={"focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 w-[40%]"}>Cancelar</button> */}
