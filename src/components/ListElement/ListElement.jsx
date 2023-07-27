@@ -82,11 +82,11 @@ const ListElement = ({ tarea, id, index, listaTareas, setListaTareas, color, cal
             </div>
 
             <div className='w-[20%] flex justify-center items-center'>
-                <button className="w-[2vw] text-white font-medium rounded-lg text-sm" onClick={(e) => editarElemento(e)}>
+                <button className="w-[8vw] lg:w-[2vw] text-white font-medium rounded-lg lg:text-sm text-base" onClick={(e) => editarElemento(e)}>
                     <img src={editBtn} alt="editBtn" className=' object-cover' />
                 </button>
 
-                <button className="w-[2vw] ml-auto text-white font-medium rounded-lg text-sm ml-2" onClick={(e) => eliminarElemento(e)}>
+                <button className="w-[8vw] lg:w-[2vw] ml-auto text-white font-medium rounded-lg lg:text-sm text-base ml-2" onClick={(e) => eliminarElemento(e)}>
                     <img src={deleteBtn} alt="deleteBtn" className=' object-cover' />
                 </button>
             </div>

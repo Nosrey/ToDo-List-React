@@ -86,7 +86,7 @@ const List = ({ setSacarButton, setEscondido, escondido, calendarRef, activo, se
             {/* reviso la longitud del localStorage y si es mayor a 0, muestro el array donde en listElement mapeo el array */}
             {tareas.filter(evento => evento.date === diaElegido).length > 0 && (
                 <div>
-                    <div className='flex flex-col items-start inline-flex border rounded px-2 bg-gray-100 mt-8 rounded-lg shadow-lg w-[90%]'>
+                    <div className='flex flex-col items-start inline-flex border rounded px-2 bg-gray-100 lg:mt-8 rounded-lg shadow-lg w-[90%]'>
                         {tareas.filter(evento => evento.date === diaElegido).sort((a,b) => a.title - b.title).sort((a, b) => a.title.localeCompare(b.title)).map((tarea, index) => (
                             <div key={index} className='w-full'>
                                 <ListElement
@@ -104,7 +104,7 @@ const List = ({ setSacarButton, setEscondido, escondido, calendarRef, activo, se
                             </div>
                         ))}
                     </div>
-                    <button className={'focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 mt-4'} onClick={eliminarTodasLasTareas}>Eliminar todas las tareas</button>
+                    <button className={'focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 mt-4 lg:mb-0 mb-4'} onClick={eliminarTodasLasTareas}>Eliminar todas las tareas</button>
                 </div>
             )}
         </div>

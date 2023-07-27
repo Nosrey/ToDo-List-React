@@ -51,7 +51,8 @@ function Calendar({ diaElegido, setDiaElegido, tareas, setTareas, calendarRef })
             events={tareas}
             selectable={true}
             selectHelper={true}
-            select={elegirDia}            
+            select={elegirDia}     
+            longPressDelay={0.1}       
         />
     </div>;
 }
