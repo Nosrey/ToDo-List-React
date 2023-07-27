@@ -8,5 +8,11 @@ La aplicación To-Do-react es una herramienta que te ayuda a organizar tus tarea
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![image](https://github.com/Nosrey/ToDo-List-React/assets/106562225/f2a9dc76-8a38-47da-9389-0aa660716f95)
+
+![image](https://github.com/Nosrey/ToDo-List-React/assets/106562225/1e3d2948-c066-41a5-80f4-2b6c682a1701)
+
+![image](https://github.com/Nosrey/ToDo-List-React/assets/106562225/cfc654a8-ef33-43d1-9291-47b6f176f630)
+
+
 
