@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ToDo-List-React/static/css/main.0f5ae10e.css",
-    "main.js": "/ToDo-List-React/static/js/main.e4f9dda6.js",
+    "main.css": "/ToDo-List-React/static/css/main.b66fcd04.css",
+    "main.js": "/ToDo-List-React/static/js/main.9fb1974f.js",
     "static/js/787.d93b6323.chunk.js": "/ToDo-List-React/static/js/787.d93b6323.chunk.js",
     "static/media/bg-banner.jpg": "/ToDo-List-React/static/media/bg-banner.e865dd9b287a1be0afd2.jpg",
     "static/media/delete-btn.png": "/ToDo-List-React/static/media/delete-btn.ea5c2f03783ec889d860.png",
@@ -9,12 +9,12 @@
     "static/media/arrow-btn-left.png": "/ToDo-List-React/static/media/arrow-btn-left.3e72f1af4f37fbfb0cb2.png",
     "static/media/arrow-btn-right.png": "/ToDo-List-React/static/media/arrow-btn-right.0bf6b4bdd59183f30fa3.png",
     "index.html": "/ToDo-List-React/index.html",
-    "main.0f5ae10e.css.map": "/ToDo-List-React/static/css/main.0f5ae10e.css.map",
-    "main.e4f9dda6.js.map": "/ToDo-List-React/static/js/main.e4f9dda6.js.map",
+    "main.b66fcd04.css.map": "/ToDo-List-React/static/css/main.b66fcd04.css.map",
+    "main.9fb1974f.js.map": "/ToDo-List-React/static/js/main.9fb1974f.js.map",
     "787.d93b6323.chunk.js.map": "/ToDo-List-React/static/js/787.d93b6323.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0f5ae10e.css",
-    "static/js/main.e4f9dda6.js"
+    "static/css/main.b66fcd04.css",
+    "static/js/main.9fb1974f.js"
   ]
 }
