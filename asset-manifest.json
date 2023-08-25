@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/ToDo-List-React/static/css/main.b66fcd04.css",
-    "main.js": "/ToDo-List-React/static/js/main.9fb1974f.js",
+    "main.css": "/ToDo-List-React/static/css/main.42b1c866.css",
+    "main.js": "/ToDo-List-React/static/js/main.9feb58ff.js",
     "static/js/787.d93b6323.chunk.js": "/ToDo-List-React/static/js/787.d93b6323.chunk.js",
     "static/media/bg-banner.jpg": "/ToDo-List-React/static/media/bg-banner.e865dd9b287a1be0afd2.jpg",
     "static/media/delete-btn.png": "/ToDo-List-React/static/media/delete-btn.ea5c2f03783ec889d860.png",
+    "static/media/todo-icon.png": "/ToDo-List-React/static/media/todo-icon.825a37a3b9fe330afdc5.png",
     "static/media/edit-btn.png": "/ToDo-List-React/static/media/edit-btn.5bbbb1e1003103f171fc.png",
     "static/media/arrow-btn-left.png": "/ToDo-List-React/static/media/arrow-btn-left.3e72f1af4f37fbfb0cb2.png",
     "static/media/arrow-btn-right.png": "/ToDo-List-React/static/media/arrow-btn-right.0bf6b4bdd59183f30fa3.png",
     "index.html": "/ToDo-List-React/index.html",
-    "main.b66fcd04.css.map": "/ToDo-List-React/static/css/main.b66fcd04.css.map",
-    "main.9fb1974f.js.map": "/ToDo-List-React/static/js/main.9fb1974f.js.map",
+    "main.42b1c866.css.map": "/ToDo-List-React/static/css/main.42b1c866.css.map",
+    "main.9feb58ff.js.map": "/ToDo-List-React/static/js/main.9feb58ff.js.map",
     "787.d93b6323.chunk.js.map": "/ToDo-List-React/static/js/787.d93b6323.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b66fcd04.css",
-    "static/js/main.9fb1974f.js"
+    "static/css/main.42b1c866.css",
+    "static/js/main.9feb58ff.js"
   ]
 }
