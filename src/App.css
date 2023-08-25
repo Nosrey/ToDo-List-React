@@ -40,3 +40,17 @@
     transform: rotate(360deg);
   }
 }
+
+.fc-daygrid-day-frame {
+  white-space: normal !important;
+  align-items: normal !important;
+  /* agrego padding a los lados */
+  padding: 0 1px;
+}
+
+/* agrego un diseño responsivo donde si el ancho de la ventana es menor a 1024 entonces aplico text-align: center */
+@media (max-width: 1024px) {
+  .fc-daygrid-day-frame {
+    text-align: center !important;
+  }
+}

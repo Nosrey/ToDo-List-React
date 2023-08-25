@@ -18,17 +18,19 @@ function Calendar({ diaElegido, setDiaElegido, tareas, setTareas, calendarRef })
     }
 
     const elegirEvento = function (data) {
-        // del objeto data, saco la fecha del evento que tendra este formato "2023-07-04T16:04:00.000Z" y la convierto en este formato "2023-07-04" y la guardo en setDiaElegido
-        let diaElegidoTemp = data.event.startStr.split('T')[0]
-        setDiaElegido(diaElegidoTemp);
 
-        let copiaTareas = tareas
-        setTareas(copiaTareas.filter(evento => evento.date !== diaElegidoTemp))
+            // del objeto data, saco la fecha del evento que tendra este formato "2023-07-04T16:04:00.000Z" y la convierto en este formato "2023-07-04" y la guardo en setDiaElegido
+            let diaElegidoTemp = data.event.startStr.split('T')[0]
+            setDiaElegido(diaElegidoTemp);
 
-        // espero medio segundo
-        setTimeout(() => {
-            setTareas(copiaTareas)
-        }, 1);
+            let copiaTareas = tareas
+            setTareas(copiaTareas.filter(evento => evento.date !== diaElegidoTemp))
+
+            // espero medio segundo
+            setTimeout(() => {
+                setTareas(copiaTareas)
+            }, 1);
+
     }
 
     // formato para los eventos
@@ -36,6 +38,13 @@ function Calendar({ diaElegido, setDiaElegido, tareas, setTareas, calendarRef })
 
     return <div className='w-auto lg:w-screen mx-2 mt-2 lg:mt-0'>
         <FullCalendar
+            eventRender={(info) => {
+                // Acceder al elemento HTML del evento
+                let evento = info.el;
+                // Establecer la propiedad white-space: nowrap
+                evento.style.whiteSpace = 'wrap';
+                evento.style.overflow = 'hidden';
+            }}
             ref={calendarRef}
             plugins={[dayGridPlungin, timeGridPluning, interactionPlugin]}
             initialView="dayGridMonth"
