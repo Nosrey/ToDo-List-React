@@ -3,8 +3,13 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlungin from '@fullcalendar/daygrid';
 import timeGridPluning from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+// importo useEffect y useState
+import { useEffect, useState } from 'react';
 
 function Calendar({ diaElegido, setDiaElegido, tareas, setTareas, calendarRef }) {
+    const lgHeight = '98vh';
+    const othersHeight = '80vh';
+    const [calendarHeight, setCalendarHeight] = useState(lgHeight);
     const elegirDia = function (data) {
         let diaElegidoTemp = data.startStr
         setDiaElegido(diaElegidoTemp);
@@ -36,7 +41,23 @@ function Calendar({ diaElegido, setDiaElegido, tareas, setTareas, calendarRef })
     // formato para los eventos
     // { title: 'event 2', date: '2023-07-08', allDay: false, color: 'red', start: new Date('2023-07-08T12:30:00') },
 
-    return <div className='w-auto lg:w-screen mx-2 mt-2 lg:mt-0'>
+
+    useEffect(() => {
+        function handleResize() {
+            // checo el tamaño de la pantalla y si es menor a 1024px, cambio el alto del calendario
+            let newHeight
+            window.innerWidth < 1024 ? (newHeight = othersHeight) :(newHeight = lgHeight)
+            setCalendarHeight(newHeight);
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+
+    return <div className='w-auto lg:w-screen mx-1 mt-1 lg:mx-2 mb-2 lg:my-0'>
         <FullCalendar
             eventRender={(info) => {
                 // Acceder al elemento HTML del evento
@@ -50,10 +71,11 @@ function Calendar({ diaElegido, setDiaElegido, tareas, setTareas, calendarRef })
             initialView="dayGridMonth"
             headerToolbar={{
                 left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                center: '',
+                // no coloco nada en right, lo quiero vacio
+                right: 'title'
             }}
-            height={"95vh"}        
+            height={calendarHeight}        
             weekends={true}
             eventOrdering={false}
             eventClick={elegirEvento}

@@ -77,7 +77,7 @@ const ListElement = ({ tarea, id, index, listaTareas, setListaTareas, color, cal
             {/* muestro la id y luego la tarea */}
             {/* creo un input de form para aplicar el checked cuando quieras marcar que la tarea esta completada     */}
             <input type="checkbox" checked={checked} onChange={(e) => cambiarChecked(e)} className="w-[7.5%]" />
-            <div className='w-[72.5%] text-base mx-3 flex justify-center items-center'>
+            <div className='w-[72.5%] text-lg lg:text-base mx-3 flex justify-center items-center'>
                 <p className={`w-full ${checked ? 'line-through' : ''}`}>{tarea}</p>
             </div>
 

@@ -57,13 +57,13 @@ const Home = () => {
             <h1>{sacarButton ? 'sacar: true' : 'sacar: false'}</h1>
             <h1>{escondido ? 'escondido: true' : 'escondido: false'}</h1> */}
 
-            <button className={'lg:w-[4vw] h-auto fixed bottom-1 left-1 z-50 hidden lg:block '} onClick={(e) => esconderList(e)}>
+            <button className={'lg:w-[3.5vw] h-auto fixed bottom-1 left-1 z-50 hidden lg:block '} onClick={(e) => esconderList(e)}>
                 <img src={(escondido ? arrowBtnRight : arrowBtnLeft)} alt="arrow" className='w-full h-full' />
             </button>
 
-            <div className={' h-[100vh] flex lg:flex-row flex-col sacar2 ' + (sacarButton ? ' sacar-activo2' : ' sacar-desactivo2 ') + (escondido ? ' sacar-desactivo2 ' : '')} >
-                <List setEscondido={setEscondido} escondido={escondido} setSacarButton={setSacarButton} sacarButton={sacarButton} calendarRef={calendarRef} activo={activo} setActivo={setActivo} tareas={tareas} setTareas={setTareas} diaElegido={diaElegido} setDiaElegido={setDiaElegido} eventos={eventos} setEventos={setEventos} fecha={fecha} setFecha={setFecha} />
+            <div className={' h-[100vh] flex lg:flex-row-reverse flex-col sacar2 ' + (sacarButton ? ' sacar-activo2' : ' sacar-desactivo2 ') + (escondido ? ' sacar-desactivo2 ' : '')} >
                 <Calendar calendarRef={calendarRef} diaElegido={diaElegido} setDiaElegido={setDiaElegido} tareas={tareas} setTareas={setTareas} />
+                <List setEscondido={setEscondido} escondido={escondido} setSacarButton={setSacarButton} sacarButton={sacarButton} calendarRef={calendarRef} activo={activo} setActivo={setActivo} tareas={tareas} setTareas={setTareas} diaElegido={diaElegido} setDiaElegido={setDiaElegido} eventos={eventos} setEventos={setEventos} fecha={fecha} setFecha={setFecha} />
             </div>
         </div>
     )
